@@ -1,10 +1,19 @@
-1. git INIT: Es para inicializar git en mi proyecto
-2. git ADD: Es para agregar los cambios realizados en remote en el repo de git 
-3. git checkout -b: Es para crear una nueva branch para trabajar en paralelo
-4. git commit -b "": Es para agregar los cambios al local con un msje claro
-5. git push: Sube los commits realizados al remoto
+# 5 comandos Git que uso y para qué sirven
 
-formas de realizar mal y bien un commit
+1. `git init` — Inicializa Git en la carpeta del proyecto (crea el historial local `.git`). Se hace una vez.
+2. `git add` — Prepara archivos en staging (zona local). NO sube nada a GitHub.
+3. `git checkout -b nombre` — Crea una branch nueva y me cambia a ella para trabajar en paralelo sin tocar `master`/`main`.
+4. `git commit -m "mensaje"` — Guarda un snapshot LOCAL de lo que está en staging, con un mensaje claro.
+5. `git push` — Sube los commits locales al remoto (GitHub).
 
-git commit -m "se realizo un cambio" // MAL
-git commit -m "Se creo NOTES.md y se realizo el primer ejercicio de git"
+## Buen vs mal commit message
+
+Mal:
+```bash
+git commit -m "se realizo un cambio"
+```
+
+Bien:
+```bash
+git commit -m "Add Git practice notes for module 01"
+```
