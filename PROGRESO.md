@@ -5,8 +5,8 @@ Marcá con `[x]` lo que completes. Traé este archivo al chat cuando quieras rev
 ## Estado general
 
 - [x] Módulo 00 — Fundamentos de código
-- [ ] Módulo 01 — Git y flujo profesional
-- [ ] Módulo 02 — HTTP, APIs y testing de contrato
+- [x] Módulo 01 — Git y flujo profesional
+- [x] Módulo 02 — HTTP, APIs y testing de contrato
 - [ ] Módulo 03 — Playwright UI — bases
 - [ ] Módulo 04 — Diseño de automatización
 - [ ] Módulo 05 — Reporting, flakiness y buenas prácticas
