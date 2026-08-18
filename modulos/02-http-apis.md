@@ -125,21 +125,201 @@ En Postman o curl:
 3. `POST /posts` con un JSON inventado
 4. Documentá en `practicos/02-api/EXPLORACION.md`
 
-### Parte B — Automatización
+### Parte B — Automatización (dónde y qué)
 
-Creá `tests/todos.spec.ts`:
+**Dónde trabajás:** siempre dentro de `practicos/02-api/`
 
-1. GET `/todos/1` → status 200 → `id` es number → `title` no vacío
-2. GET `/todos/999999` → ¿qué status da? documentá el comportamiento real
-3. POST `/posts` → status 201 (o el que responda) → el body refleja tu payload
-4. Encadená: crear post (simulado) y validar campos
+**Estructura esperada:**
+
+```text
+practicos/02-api/
+  package.json
+  playwright.config.ts
+  EXPLORACION.md          ← Parte A
+  tests/
+    todos.spec.ts         ← Parte B (creá este archivo)
+```
+
+**Setup (si aún no lo hiciste), en PowerShell:**
+
+```powershell
+cd practicos/02-api
+npm init -y
+npm install -D @playwright/test typescript
+npx playwright install
+```
+
+**`playwright.config.ts` mínimo** (en la raíz de `02-api`):
+
+```ts
+import { defineConfig } from "@playwright/test";
+
+export default defineConfig({
+  testDir: "./tests",
+  use: {
+    baseURL: "https://jsonplaceholder.typicode.com",
+  },
+});
+```
+
+**Archivo a crear:** `tests/todos.spec.ts`  
+Ahí van **4 tests** (4 bloques `test(...)`). No es UI: usás `request` de Playwright.
+
+Idea de cada test:
+
+1. **GET feliz** — `GET /todos/1`  
+   Assert: status `200`, `id` es `number`, `title` string no vacío.
+2. **GET id inexistente** — `GET /todos/999999`  
+   Anotá el status real (JSONPlaceholder a veces igual da 200 con `{}`). Documentalo en un comentario o en `EXPLORACION.md`.
+3. **POST crear post** — `POST /posts` con tu JSON inventado  
+   Assert: status `201` (o el que responda) y que el body traiga tu `title` / `body` / `userId`.
+4. **Encadenado** — en un solo test: hacés POST, leés el `id` de la respuesta y validás que ese `id` exista y que los campos coincidan con lo enviado.
+
+**Cómo correrlos:**
+
+```powershell
+cd practicos/02-api
+npx playwright test
+```
+
+Esqueleto orientativo (completalo vos; no copies ciego):
+
+```ts
+import { test, expect } from "@playwright/test";
+
+test("GET /todos/1 returns a valid todo", async ({ request }) => {
+  const response = await request.get("/todos/1");
+  // expect status + body fields
+});
+
+test("GET /todos/999999 documents real behavior", async ({ request }) => {
+  const response = await request.get("/todos/999999");
+  // log/assert the real status and body
+});
+
+test("POST /posts creates a post with my payload", async ({ request }) => {
+  const payload = { title: "...", body: "...", userId: 1 };
+  const response = await request.post("/posts", { data: payload });
+  // expect status + body reflects payload
+});
+
+test("POST then validate returned fields", async ({ request }) => {
+  // post → read json → assert id + fields
+});
+```
 
 ### Parte C — Restful Booker (nivel +1)
 
-1. Auth → obtener token
-2. Crear booking
-3. GET booking by id
-4. Assert de campos clave
+Esta parte simula mejor un sistema real (banco, reservas, etc.): **primero te identificás, después creás, después leés lo creado**.
+
+Docs: https://restful-booker.herokuapp.com/apidoc/index.html  
+Base URL: `https://restful-booker.herokuapp.com`
+
+**Regla de clase:** explorá en Postman primero (como la Parte A), **después** automatizá en `tests/booking.spec.ts`.
+
+#### Qué es distinto de JSONPlaceholder
+
+| JSONPlaceholder | Restful Booker |
+|-----------------|----------------|
+| Sin login | Hay que pedir un **token** |
+| POST “falso” (GET del id nuevo = 404) | El booking **sí existe** después del POST |
+| Status create = 201 | Create suele responder **200** (anotá el real) |
+
+**EN:** *"Authentication proves who you are; then you create a resource and read it back by id."*
+
+#### Paso 1 — Auth (obtener token)
+
+En Postman:
+
+- Método: `POST`
+- URL: `https://restful-booker.herokuapp.com/auth`
+- Body raw JSON:
+
+```json
+{
+  "username": "admin",
+  "password": "password123"
+}
+```
+
+(esas credenciales son públicas de la demo, no son un secreto de un banco)
+
+Respuesta esperada: algo como `{ "token": "abc123..." }`.
+
+Guardá ese valor: lo vas a usar como cookie `token=...` en operaciones que lo pidan (update/delete). **Crear y GET booking suelen no exigir token**; el token es para practicar el flujo de auth.
+
+#### Paso 2 — Crear booking
+
+- Método: `POST`
+- URL: `https://restful-booker.herokuapp.com/booking`
+- Header: `Content-Type: application/json` y `Accept: application/json`
+- Body de ejemplo (inventá nombre/fechas):
+
+```json
+{
+  "firstname": "Fernando",
+  "lastname": "QA",
+  "totalprice": 150,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2026-09-01",
+    "checkout": "2026-09-05"
+  },
+  "additionalneeds": "Breakfast"
+}
+```
+
+En la respuesta buscá `bookingid` (número) y el objeto `booking` con tus campos.
+
+#### Paso 3 — GET por id
+
+- Método: `GET`
+- URL: `https://restful-booker.herokuapp.com/booking/{bookingid}`
+- Header importante: `Accept: application/json` (si no, a veces devuelve XML)
+
+Assertá que `firstname`, `lastname`, `totalprice` coincidan con lo que enviaste.
+
+#### Paso 4 — Automatizar
+
+Archivo nuevo: `practicos/02-api/tests/booking.spec.ts`
+
+Un test (o dos) que haga **el encadenado de verdad**:
+
+1. `POST /auth` → extraer `token`  
+2. `POST /booking` → extraer `bookingid`  
+3. `GET /booking/{bookingid}` → assert de campos  
+
+En Playwright, `baseURL` de Restful Booker es otro dominio. Opciones:
+
+- URL absoluta en esos tests, o  
+- un segundo `request` / `baseURL` solo para este archivo.
+
+Ejemplo de extraer token y encadenar (vos completás asserts):
+
+```ts
+const auth = await request.post("https://restful-booker.herokuapp.com/auth", {
+  data: { username: "admin", password: "password123" },
+});
+const { token } = await auth.json();
+
+const create = await request.post("https://restful-booker.herokuapp.com/booking", {
+  headers: { Accept: "application/json" },
+  data: { /* payload */ },
+});
+const created = await create.json();
+const id = created.bookingid;
+
+const get = await request.get(
+  `https://restful-booker.herokuapp.com/booking/${id}`,
+  { headers: { Accept: "application/json" } }
+);
+```
+
+Documentá en `EXPLORACION.md` status reales (auth, create, get).
+
+---
+
+**Criterio de esta parte:** ≥ 1 test verde que cree un booking y lo vuelva a leer por id. El token tiene que existir en la respuesta de `/auth` aunque el GET no lo use.
 
 ### Parte D — Explain in English
 
