@@ -9,7 +9,7 @@ Marcá con `[x]` lo que completes. Traé este archivo al chat cuando quieras rev
 - [x] Módulo 02 — HTTP, APIs y testing de contrato
 - [x] Módulo 03 — Playwright UI — bases
 - [x] Módulo 04 — Diseño de automatización
-- [ ] Módulo 05 — Reporting, flakiness y buenas prácticas
+- [x] Módulo 05 — Reporting, flakiness y buenas prácticas
 - [ ] Módulo 06 — CI/CD con GitHub Actions
 - [ ] Módulo 07 — Proyecto portfolio
 - [ ] Módulo 08 — Entrevistas y storytelling EN
