@@ -4,14 +4,28 @@ Esto define la dinámica profesor–alumno en el chat.
 
 ## Dinámica de cada clase
 
-1. **Vos leés el módulo** (teoría + vocabulario).
-2. **Hacés el práctico** escribiendo código vos.
-3. **Pedís revisión** con: `Profe, revisá el Módulo XX` + archivos o dudas concretas.
+1. **Vos leés el módulo** (teoría + vocabulario + **pasos numerados**).
+2. **Seguís el mapa de archivos** del módulo: dónde crear cada carpeta/archivo y para qué sirve.
+3. **Hacés un paso, verificás, recién ahí el siguiente** (no todo el módulo de una).
+4. **Pedís revisión** con: `Profe, revisá el Módulo XX` + archivos o dudas concretas.
 4. Yo corrijo como en clase presencial:
    - qué está bien
    - qué concepto falta
    - tarea de refuerzo si hace falta
 5. Solo entonces pasamos al siguiente módulo.
+
+## Formato de las guías (desde Módulo 06 en adelante)
+
+Cada módulo incluye:
+
+- **Checklist “antes de empezar”** — qué tener listo
+- **Mapa de archivos** — árbol con rutas exactas
+- **PASO 1, 2, 3…** — orden fijo; cada paso dice **dónde** (carpeta), **qué archivo**, **qué comando**
+- **Tabla “qué hace cada línea/bloque”** — para YAML, config, etc.
+- **Errores comunes** — qué mirar si falla
+- **Git + PR** — comandos al final, vos los corrés a mano
+
+Si un paso no está claro: `No entiendo el PASO X del Módulo YY` y lo vemos antes de que sigas.
 
 ## Frases útiles para pedirme clase
 
