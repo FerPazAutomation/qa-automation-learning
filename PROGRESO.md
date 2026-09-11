@@ -10,7 +10,7 @@ Marcá con `[x]` lo que completes. Traé este archivo al chat cuando quieras rev
 - [x] Módulo 03 — Playwright UI — bases
 - [x] Módulo 04 — Diseño de automatización
 - [x] Módulo 05 — Reporting, flakiness y buenas prácticas
-- [ ] Módulo 06 — CI/CD con GitHub Actions
+- [x] Módulo 06 — CI/CD con GitHub Actions
 - [ ] Módulo 07 — Proyecto portfolio
 - [ ] Módulo 08 — Entrevistas y storytelling EN
 

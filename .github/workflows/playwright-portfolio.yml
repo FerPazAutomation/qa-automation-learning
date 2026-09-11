@@ -1,0 +1,29 @@
+name: Portfolio Playwright Tests
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+defaults:
+  run:
+    working-directory: practicos/07-portfolio
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: practicos/07-portfolio/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: portfolio-playwright-report
+          path: practicos/07-portfolio/playwright-report/
