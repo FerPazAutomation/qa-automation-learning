@@ -20,8 +20,8 @@
 
 ## Environments
 - Local: `npx playwright test` — see [HOW_TO_RUN.md](./HOW_TO_RUN.md)
-- CI: GitHub Actions will run the same smoke suite on pull requests
-  (workflow added in the next step)
+- CI: GitHub Actions runs the complete portfolio suite on pull requests and pushes to `master`
+- Workflow: [Portfolio Playwright Tests](https://github.com/FerPazAutomation/qa-automation-learning/actions/workflows/playwright-portfolio.yml)
 
 ## Reporting
 - HTML report
