@@ -11,7 +11,7 @@ Marcá con `[x]` lo que completes. Traé este archivo al chat cuando quieras rev
 - [x] Módulo 04 — Diseño de automatización
 - [x] Módulo 05 — Reporting, flakiness y buenas prácticas
 - [x] Módulo 06 — CI/CD con GitHub Actions
-- [ ] Módulo 07 — Proyecto portfolio
+- [x] Módulo 07 — Proyecto portfolio
 - [ ] Módulo 08 — Entrevistas y storytelling EN
 
 ## Notas / bloqueos

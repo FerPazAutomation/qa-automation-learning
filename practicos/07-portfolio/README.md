@@ -27,6 +27,9 @@ See [docs/HOW_TO_RUN.md](./docs/HOW_TO_RUN.md) for install and commands.
 ## Test strategy
 See [docs/TEST_STRATEGY.md](./docs/TEST_STRATEGY.md) for scope, pyramid, and reporting.
 
+## Interview pitch
+See [PITCH.md](./PITCH.md) for a 3–5 minute portfolio walkthrough in English (Spanish reference included).
+
 ## CI
 GitHub Actions runs the complete portfolio suite on pull requests and pushes to `master`.
 See the [Portfolio Playwright Tests workflow](https://github.com/FerPazAutomation/qa-automation-learning/actions/workflows/playwright-portfolio.yml)
