@@ -1,4 +1,27 @@
-# Ruta QA Automation — Curso práctico
+# QA Automation Learning Path
+
+[![Portfolio Playwright Tests](https://github.com/FerPazAutomation/qa-automation-learning/actions/workflows/playwright-portfolio.yml/badge.svg)](https://github.com/FerPazAutomation/qa-automation-learning/actions/workflows/playwright-portfolio.yml)
+
+My structured path from Manual QA to QA Automation with **Playwright + TypeScript** and **GitHub Actions**.
+Each module has theory, a hands-on exercise and a short "Explain in English" summary.
+
+**Start here:** [`practicos/07-portfolio`](practicos/07-portfolio) — the final portfolio suite (API contract checks, UI tests with Page Object Model, data-driven login, CI on every PR).
+
+| Folder | What's inside |
+|--------|---------------|
+| [`practicos/02-api`](practicos/02-api) | API tests against JSONPlaceholder and Restful Booker |
+| [`practicos/03-ui`](practicos/03-ui) | First UI tests: The Internet, TodoMVC, Sauce Demo |
+| [`practicos/04-diseno`](practicos/04-diseno) | Page Object Model and data-driven tests |
+| [`practicos/05-estabilidad`](practicos/05-estabilidad) | Flaky test analysis and a [post-mortem](practicos/05-estabilidad/FLAKY_POSTMORTEM.md) |
+| [`practicos/07-portfolio`](practicos/07-portfolio) | Portfolio suite, test strategy and interview pitch |
+| [`practicos/08-entrevistas`](practicos/08-entrevistas) | Interview answers in English |
+
+Applied on a real system: [**ecommerce-bike**](https://github.com/FerPazAutomation/ecommerce-bike) (React + FastAPI + Stripe, tested with pytest, Vitest and Playwright).
+Author: **Fernando Paz** · [LinkedIn](https://www.linkedin.com/in/fernandollanespaz/) · [Portfolio](https://fernando-qa-portfolio.vercel.app)
+
+---
+
+## Ruta QA Automation — Curso práctico (ES)
 
 Ruta de aprendizaje diseñada para alguien con experiencia en **QA Manual** que quiere migrar a **QA Automation + CI/CD**.
 
